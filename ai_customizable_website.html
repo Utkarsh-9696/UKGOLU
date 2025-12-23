@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Hub</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(135deg, #ffffff, #f0f9ff, #fff5f5);
+      color: #222;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    header h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    header p {
+      font-size: 18px;
+      color: #555;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 30px 0;
+    }
+
+    nav button {
+      font-size: 22px;
+      padding: 14px 28px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, #6ee7f9, #a78bfa);
+      color: #fff;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    nav button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+
+    section {
+      max-width: 900px;
+      margin: auto;
+      padding: 30px;
+      display: none;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 200px;
+      padding: 15px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      resize: vertical;
+    }
+
+    .save-btn {
+      margin-top: 15px;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      background: #22c55e;
+      color: white;
+    }
+
+    .save-btn:hover {
+      background: #16a34a;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #777;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>AI Learning & Prompt Hub</h1>
+  <p>Create, customize, and share AI knowledge easily</p>
+</header>
+
+<nav>
+  <button onclick="showSection('prompt')">AI Prompt</button>
+  <button onclick="showSection('knowledge')">AI Knowledge</button>
+  <button onclick="showSection('usage')">How to use AI</button>
+</nav>
+
+<section id="prompt" class="active">
+  <h2>AI Prompt</h2>
+  <p>Write and customize AI prompts. Visitors can copy and use them.</p>
+  <textarea id="promptText"></textarea>
+  <button class="save-btn" onclick="saveContent('promptText')">Save</button>
+</section>
+
+<section id="knowledge">
+  <h2>AI Knowledge</h2>
+  <p>Add AI-related information, explanations, and insights.</p>
+  <textarea id="knowledgeText"></textarea>
+  <button class="save-btn" onclick="saveContent('knowledgeText')">Save</button>
+</section>
+
+<section id="usage">
+  <h2>How to use AI</h2>
+  <p>Explain practical methods and real-life uses of AI.</p>
+  <textarea id="usageText"></textarea>
+  <button class="save-btn" onclick="saveContent('usageText')">Save</button>
+</section>
+
+<footer>
+  © 2025 AI Hub. Customize locally using your browser.
+</footer>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  function saveContent(id) {
+    localStorage.setItem(id, document.getElementById(id).value);
+    alert('Content saved');
+  }
+
+  ['promptText','knowledgeText','usageText'].forEach(id => {
+    const saved = localStorage.getItem(id);
+    if (saved) document.getElementById(id).value = saved;
+  });
+</script>
+
+</body>
+</html>
